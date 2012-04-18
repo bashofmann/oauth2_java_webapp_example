@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.bastianhofmann.oauth2.examples.webapp</groupId>
+  <artifactId>de.bastianhofmann.oauth2.examples.webapp</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.oauth-client</groupId>
+      <artifactId>google-oauth-client-servlet</artifactId>
+      <version>1.8.0-beta</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <configuration>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <webAppSourceDirectory>${basedir}/src/main/webapp/</webAppSourceDirectory>
+          <webXmlFile>${basedir}/src/main/webapp/WEB-INF/web.xml</webXmlFile>
+          <contextPath>/CookieJar</contextPath>
+          <connectors>
+            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+              <port>9091</port>
+              <maxIdleTime>60000000</maxIdleTime>
+            </connector>
+          </connectors>
+          <systemProperties>
+            <systemProperty>
+              <name>org.apache.commons.logging.Log</name>
+              <value>org.apache.commons.logging.impl.SimpleLog</value>
+            </systemProperty>
+          </systemProperties>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
